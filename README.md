@@ -24,7 +24,19 @@ O projeto RelaxBerry consiste no desenvolvimento de um dispositivo embarcado par
 
 **Objetivo do projeto**
 
-Componentes usados
+O objetivo é levar técnicas de respirações para pessoas com ansiedade ou crise de pânico por diversos motivos. 
+
+**Funcionamento do Projeto**
+
+O RelaxBerry funciona através da exibição de mensagens no display OLED e do acionamento sequencial dos LEDs RGB para indicar cada etapa da técnica de respiração quadrada. O dispositivo segue um ciclo controlado de acordo com o tempo de cada respiração. 
+Inspirar (4 segundos) : O display exibe "Respire" e um LED verde pisca progressivamente para orientar a inalação.
+Segurar (4 segundos) :  O display exibe "Segure a Respiração", e um LED vermelho  se acende fixamente durante os 4 segundos.
+Expirar (4 segundos) : O display exibe "Solte" e um LED azul pisca para orientar a exalação.
+Segurar (4 segundos) : O display repete "Segure a Respiração", e o LED vermelho se acende novamente.
+Esse ciclo se repete continuamente, guiando o usuário de forma simples e objetiva até que sinta que sua respiração se acalmou e que melhorou, assim pode desligar o dispositivo.
+
+
+**Componentes usados**
 
 Microcontrolador: Raspberry Pi Pico
 
@@ -51,6 +63,9 @@ LED Vermelho → GPIO 12
 
 LED Azul → GPIO 13
 
+![image](https://github.com/user-attachments/assets/10ecb5af-1178-4aa2-b92a-2040f0cf17af)
+
+
 **Como compilar e executar** 
 
 Instalar o Raspberry Pi Pico SDK.
@@ -68,7 +83,12 @@ O dispositivo iniciará automaticamente e guiará o usuário na técnica de resp
 
 **Imagens e vídeos**
 
+
+
 Diagrama de blocos do funcionamento : ![image](https://github.com/user-attachments/assets/454cd3ee-9e51-4ed9-ade9-609ad5cac581)
+
+Apresentação do Projeto : ![image](https://github.com/user-attachments/assets/69f8d15e-e93e-4b7d-aa0a-c1b7c38c07cf)
+
 
 
 Link para o vídeo do funcionamento :  https://youtu.be/sk14xKnpJd8?si=rfSoK9_Jz3X5Z1LY  
