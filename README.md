@@ -107,6 +107,75 @@ O RelaxBerry funcionará de maneira independente, sem necessidade de aplicativos
 O projeto demonstrará a viabilidade do uso de sistemas embarcados no suporte à saúde mental.
 
 
+# Projeto Contador de Eventos com Interrupção 
+
+**Funcionamento**
+
+Este programa foi desenvolvido para ser executado em uma placa Raspberry Pi Pico e utiliza dois botões físicos e um display OLED com o driver SSD1306. Quando o Botão A (GPIO5) é pressionado, o programa inicia um contador decrescente de 9 até 0, atualizando o display OLED a cada segundo com o valor atual do contador e o número de vezes que o Botão B (GPIO6) foi pressionado durante essa contagem. Cada vez que o Botão B é pressionado enquanto a contagem está ativa, o número de cliques é incrementado e exibido no display. Quando o contador atinge 0, o sistema congela a execução e permanece mostrando o valor 0 e os cliques registrados, até que o Botão A seja pressionado novamente, reiniciando todo o processo. O programa utiliza interrupções por borda de descida para detectar os cliques nos botões, tornando o sistema mais responsivo e eficiente.
+
+
+**Objetivo**
+
+Implementar um sistema que:
+
+Inicie a contagem de 9 até 0 ao pressionar o Botão A.
+
+Durante essa contagem, conte quantas vezes o Botão B foi pressionado.
+
+Exiba tudo no display OLED.
+
+Após chegar a 0, o sistema congela, e ignora novas pressões do Botão B.
+
+O sistema só reinicia uma nova contagem com uma nova pressão no Botão A.
+
+**Pinagem e Função**
+
+
+![image](https://github.com/user-attachments/assets/0a0915e5-e05d-42ee-a7b6-042235377e42)
+
+**Fluxo Lógico do Programa**
+
+Inicialização:
+     Configura GPIO5 e GPIO6 como entrada com pull-up.
+    
+     Configura interrupções para os botões.
+     
+     Inicializa o display OLED.
+
+
+Interrupção do Botão A (GPIO5):
+     Reinicia o contador para 9.
+     
+     Zera o contador de cliques do Botão B.
+     
+     Ativa o modo de contagem.
+
+**Loop Principal (ou Timer):**
+
+**Se a contagem estiver ativa:**
+
+     A cada 1 segundo, decrementa o contador.
+     
+     Atualiza o display com o novo valor e cliques.
+
+**Se o contador chegar a 0:**
+    Congela o sistema (desativa contagem).
+    
+    Ignora cliques no Botão B (por software).
+
+**Interrupção do Botão B (GPIO6):**
+
+    Se a contagem estiver ativa:
+    
+    Incrementa o contador de cliques.
+    
+    Atualiza o display.
+
+![image](https://github.com/user-attachments/assets/0baa04f5-3c49-45fb-9990-61ec855c98ac)
+
+
+
+
 
 
 
