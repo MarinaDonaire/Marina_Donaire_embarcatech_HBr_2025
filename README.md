@@ -175,7 +175,69 @@ Interrupção do Botão A (GPIO5):
 
 
 
+# Projeto para ler os valores convertidos digitalmente do joystick da BitDogLab
+
+**Funcionamento**
+
+Este programa foi desenvolvido para ser executado em uma placa Raspberry Pi Pico utilizando dois botões físicos conectados aos GPIOs 5 (Botão A) e 6 (Botão B). Ao pressionar o Botão A, o sistema inicia uma contagem decrescente de 9 até 0, exibida no terminal serial USB. Durante essa contagem, cada vez que o Botão B é pressionado, um contador de cliques é incrementado e também mostrado no terminal. Quando a contagem atinge 0, o sistema congela e permanece exibindo os valores finais no terminal. A contagem só pode ser reiniciada com uma nova pressão no Botão A. O programa utiliza interrupções por borda de descida para detectar os cliques dos botões, garantindo maior eficiência e resposta rápida do sistema.
+
+**Objetivo**
+
+Implementar um sistema que:
+
+Inicie a contagem de 9 até 0 ao pressionar o Botão A (GPIO5).
+
+Durante essa contagem, conte quantas vezes o Botão B (GPIO6) foi pressionado.
+
+Exiba o valor atual do contador e o número de cliques no terminal serial.
+
+Após chegar a 0, o sistema congele e ignore novos cliques no Botão B.
+
+Permita reiniciar a contagem apenas com nova pressão no Botão A.
 
 
+**Pinagem e função**
+
+![image](https://github.com/user-attachments/assets/d7639fc1-572b-4955-9716-66caedffa8d6)
+Obs.: Ambos os pinos são configurados como entrada com pull-up interno ativado.
 
 
+**Fluxo Lógico do Programa**
+
+Inicialização:
+
+Configura GPIO5 (Botão A) e GPIO6 (Botão B) como entradas com pull-up.
+
+Define interrupções por borda de descida para ambos os botões.
+
+Inicializa a comunicação serial via USB.
+
+Interrupção do Botão A (GPIO5):
+
+Reinicia o contador de 9 até 0.
+
+Zera o contador de cliques do Botão B.
+
+Ativa o modo de contagem.
+
+Loop Principal:
+
+Se a contagem estiver ativa:
+
+A cada 1 segundo, decrementa o contador.
+
+Exibe no terminal o valor atual do contador e o número de cliques.
+
+Se o contador chegar a 0:
+
+Desativa a contagem.
+
+O sistema congela e aguarda nova ativação via Botão A.
+
+Interrupção do Botão B (GPIO6):
+
+Se a contagem estiver ativa:
+
+Incrementa o número de cliques.
+
+Atualiza os dados no terminal.
