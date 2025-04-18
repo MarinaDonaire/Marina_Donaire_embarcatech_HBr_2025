@@ -293,6 +293,11 @@ Exibe o valor da temperatura no terminal serial.
 
 Aguarda 1 segundo antes de repetir o processo.
 
+Fluxograma : 
+
+![image](https://github.com/user-attachments/assets/98b7a36b-9496-4c39-bd2f-e543071f949d)
+
+
 Imagem do funcionamento : 
 
 ![image](https://github.com/user-attachments/assets/0b1e18df-ce1e-4846-8a7e-2c7c0642214e) 
