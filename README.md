@@ -241,3 +241,62 @@ Se a contagem estiver ativa:
 Incrementa o número de cliques.
 
 Atualiza os dados no terminal.
+
+Imagem do Funcionamento : 
+
+![image](https://github.com/user-attachments/assets/71c0aeeb-0d6c-4217-83d3-74eaaf25e9d3)
+
+# Projeto para ler a temperatura interna do RP2040
+
+**Funcionamento**
+
+Este programa foi desenvolvido para ser executado em uma placa Raspberry Pi Pico (RP2040) utilizando o sensor de temperatura interno do microcontrolador. A cada segundo, o sistema realiza uma leitura do ADC (Conversor Analógico-Digital) interno, que está conectado ao sensor de temperatura embutido no chip. O valor lido é convertido para tensão elétrica e, em seguida, para graus Celsius (ºC) utilizando a fórmula fornecida no datasheet do RP2040. O valor da temperatura é então exibido no terminal serial USB, permitindo o monitoramento em tempo real da temperatura interna do chip.
+
+**Objetivo**
+
+Implementar um sistema que:
+
+Leia a temperatura interna do microcontrolador RP2040 utilizando o canal 4 do ADC.
+
+Converta a leitura analógica para um valor de tensão.
+
+Calcule a temperatura em graus Celsius com base na tensão lida.
+
+Exiba a temperatura no terminal serial USB a cada segundo.
+
+**Obs : o sensor de temperatura é interno ao microcontrolador. A leitura é feita por meio do canal 4 do ADC, que é reservado exclusivamente para esse sensor.**
+
+**Fluxo Lógico do Programa**
+
+Inicialização:
+
+Inicia o sistema e configura o ADC interno.
+
+Habilita o sensor de temperatura interno.
+
+Seleciona o canal 4 do ADC, que está conectado ao sensor interno.
+
+Inicializa a comunicação serial via USB para envio dos dados ao terminal.
+
+Loop Principal:
+
+Realiza a leitura do valor analógico do sensor de temperatura.
+
+Converte o valor lido em uma tensão elétrica (baseado na resolução de 12 bits do ADC).
+
+Converte essa tensão em um valor de temperatura em ºC utilizando a fórmula:
+
+**temperatura = 27.0 - (tensao - 0.706) / 0.001721**
+
+
+Exibe o valor da temperatura no terminal serial.
+
+Aguarda 1 segundo antes de repetir o processo.
+
+Imagem do funcionamento : 
+
+![image](https://github.com/user-attachments/assets/0b1e18df-ce1e-4846-8a7e-2c7c0642214e) 
+
+
+
+
