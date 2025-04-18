@@ -7,6 +7,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Initialise pico_sdk from installed location
+# (note this can come from environment, CMake cache etc)
+
+# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
 if(WIN32)
     set(USERHOME $ENV{USERPROFILE})
 else()
@@ -19,31 +22,43 @@ set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
 if (EXISTS ${picoVscode})
     include(${picoVscode})
 endif()
-
+# ====================================================================================
 set(PICO_BOARD pico_w CACHE STRING "Board type")
 
+# Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(temperatura C CXX ASM)
+project(projeto_int C CXX ASM)
 
+# Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-add_executable(temperatura temperatura.c )
+# Add executable. Default name is the project name, version 0.1
 
-pico_set_program_name(temperatura "temperatura")
-pico_set_program_version(temperatura "0.1")
+add_executable(projeto_int projeto_int.c inc/ssd1306_i2c.c)
 
-pico_enable_stdio_uart(temperatura 0)
-pico_enable_stdio_usb(temperatura 1)
+pico_set_program_name(projeto_int "projeto_int")
+pico_set_program_version(projeto_int "0.1")
 
-# Adiciona a biblioteca ADC aqui
-target_link_libraries(temperatura
-        pico_stdlib
-        hardware_adc
-)
+# Modify the below lines to enable/disable output over UART/USB
+pico_enable_stdio_uart(projeto_int 0)
+pico_enable_stdio_usb(projeto_int 1)
 
-target_include_directories(temperatura PRIVATE
+# Add the standard library to the build
+target_link_libraries(projeto_int
+        pico_stdlib)
+
+# Add the standard include files to the build
+target_include_directories(projeto_int PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
 
-pico_add_extra_outputs(temperatura)
+# Add any user requested libraries
+target_link_libraries(projeto_int 
+        hardware_i2c
+        hardware_timer
+        
+        )
+
+pico_add_extra_outputs(projeto_int)
+
