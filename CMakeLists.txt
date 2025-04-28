@@ -16,7 +16,7 @@ else()
     set(USERHOME $ENV{HOME})
 endif()
 set(sdkVersion 1.5.1)
-set(toolchainVersion 13_2_Rel1)
+set(toolchainVersion 13_3_Rel1)
 set(picotoolVersion 2.0.0)
 set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
 if (EXISTS ${picoVscode})
@@ -28,37 +28,37 @@ set(PICO_BOARD pico_w CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(projeto_int C CXX ASM)
+project(projetopastas C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(projeto_int projeto_int.c inc/ssd1306_i2c.c)
+add_executable(projetopastas app/main.c drivers/led_embutido.c hal/hal_led.c)
 
-pico_set_program_name(projeto_int "projeto_int")
-pico_set_program_version(projeto_int "0.1")
+pico_set_program_name(projetopastas "projetopastas")
+pico_set_program_version(projetopastas "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(projeto_int 0)
-pico_enable_stdio_usb(projeto_int 1)
+pico_enable_stdio_uart(projetopastas 0)
+pico_enable_stdio_usb(projetopastas 1)
 
 # Add the standard library to the build
-target_link_libraries(projeto_int
+target_link_libraries(projetopastas
         pico_stdlib)
 
 # Add the standard include files to the build
-target_include_directories(projeto_int PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}
+target_include_directories(projetopastas PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}/include
 )
 
 # Add any user requested libraries
-target_link_libraries(projeto_int 
-        hardware_i2c
-        hardware_timer
-        
+target_link_libraries(projetopastas 
+pico_stdlib 
+pico_cyw43_arch_none
         )
 
-pico_add_extra_outputs(projeto_int)
+
+pico_add_extra_outputs(projetopastas)
 
