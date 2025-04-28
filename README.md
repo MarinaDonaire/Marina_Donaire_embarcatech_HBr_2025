@@ -302,6 +302,65 @@ Imagem do funcionamento :
 
 ![image](https://github.com/user-attachments/assets/0b1e18df-ce1e-4846-8a7e-2c7c0642214e) 
 
+# Projeto Estruturação de Código para Arquitetura Modular
+
+Projeto  para estrutura modular de um programa simples na Raspberry Pi Pico W, que faz o LED embutido piscar usando uma separação em camadas:
+
+drivers/: acesso direto ao hardware (controle do LED).
+
+hal/: abstração de hardware (camada intermediária).
+
+app/: lógica principal da aplicação.
+
+include/: cabeçalhos (interfaces públicas).
+
+**Descrição**
+
+Este projeto implementa um pisca-pisca do LED da Raspberry Pi Pico W de forma modularizada, seguindo boas práticas de separação de camadas:
+
+Driver: Usa diretamente a API cyw43_arch para manipular o LED embutido.
+
+HAL (Hardware Abstraction Layer): Expõe uma função simples para alternar o estado do LED (hal_led_toggle()).
+
+Aplicação Principal: Apenas chama funções da HAL para piscar o LED em intervalos regulares.
+
+
+**Estrutura de Pastas**
+
+projetopastas/
+├── app/
+│   └── main.c          # Lógica principal
+├── drivers/
+│   └── led_embutido.c  # Controle direto do LED
+├── hal/
+│   └── hal_led.c       # Abstração de hardware
+├── include/
+│   ├── led_embutido.h  # Header do driver
+│   └── hal_led.h       # Header da HAL
+├── CMakeLists.txt      # Configuração da build
+└── pico_sdk_import.cmake # Importação do SDK (necessário para compilar)
+
+**Funcionamento**
+
+O LED embutido na Raspberry Pi Pico W irá:
+
+Ligar por 500ms
+
+Desligar por 500ms
+
+Repetir indefinidamente
+
+**Imagens de Funcionamento**
+
+Ordem das pastas no codigo : ![image](https://github.com/user-attachments/assets/9ff47f02-989e-4b91-9a4e-084c7413fb85)
+
+Codigo Main: ![image](https://github.com/user-attachments/assets/cef5f9e7-ad06-45be-a659-590d1c664a5b)
+
+Tela completa de compilação : ![image](https://github.com/user-attachments/assets/86b26022-a314-4ce9-b385-018f8c60b549)
+
+Imagem do led aceso: ![image](https://github.com/user-attachments/assets/3e3b82fa-1b86-4feb-82c1-0b09a5e1f284)
+
+
 
 
 
