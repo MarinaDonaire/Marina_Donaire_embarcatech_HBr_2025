@@ -1,4 +1,3 @@
-# Generated Cmake Pico project file
 
 cmake_minimum_required(VERSION 3.13)
 
@@ -25,40 +24,40 @@ endif()
 # ====================================================================================
 set(PICO_BOARD pico_w CACHE STRING "Board type")
 
-# Pull in Raspberry Pi Pico SDK (must be before project)
+# Pull in Raspberry Pi Pico SDK 
 include(pico_sdk_import.cmake)
 
-project(projetopastas C CXX ASM)
+project(temperatura_tu C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-# Add executable. Default name is the project name, version 0.1
 
-add_executable(projetopastas app/main.c drivers/led_embutido.c hal/hal_led.c)
-
-pico_set_program_name(projetopastas "projetopastas")
-pico_set_program_version(projetopastas "0.1")
-
-# Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(projetopastas 0)
-pico_enable_stdio_usb(projetopastas 1)
-
-# Add the standard library to the build
-target_link_libraries(projetopastas
-        pico_stdlib)
-
-# Add the standard include files to the build
-target_include_directories(projetopastas PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}/include
+add_executable(temperatura_tu 
+    main.c 
+    adc_to_celsius.c  
 )
 
-# Add any user requested libraries
-target_link_libraries(projetopastas 
-pico_stdlib 
-pico_cyw43_arch_none
-        )
+pico_set_program_name(temperatura_tu "temperatura_tu")
+pico_set_program_version(temperatura_tu "0.1")
 
 
-pico_add_extra_outputs(projetopastas)
+pico_enable_stdio_uart(temperatura_tu 0)
+pico_enable_stdio_usb(temperatura_tu 1)
 
+
+target_link_libraries(temperatura_tu
+    pico_stdlib
+    hardware_adc  
+)
+
+target_include_directories(temperatura_tu PRIVATE
+    ${CMAKE_CURRENT_LIST_DIR}
+)
+
+
+target_link_libraries(temperatura_tu 
+    
+)
+
+pico_add_extra_outputs(temperatura_tu)
