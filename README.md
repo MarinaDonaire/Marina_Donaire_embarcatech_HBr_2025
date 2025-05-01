@@ -361,6 +361,33 @@ Tela completa de compilação : ![image](https://github.com/user-attachments/ass
 Imagem do led aceso: ![image](https://github.com/user-attachments/assets/3e3b82fa-1b86-4feb-82c1-0b09a5e1f284)
 
 
+# Projeto Temperatura do RP2040 com ADC_VAL 
 
+**Objetivo**
+
+Desenvolver um programa embarcado para o Raspberry Pi Pico W capaz de realizar a leitura de um sensor de temperatura (via ADC), converter o valor lido para graus Celsius e exibir o resultado no monitor serial. O projeto pode ser expandido para aplicações como controle térmico, monitoramento ambiental ou sistemas IoT.
+
+**Funcionamento**
+
+O microcontrolador lê valores analógicos do sensor de temperatura conectado ao canal ADC.
+
+Os valores são convertidos para temperatura em graus Celsius usando uma função personalizada.
+
+O resultado é impresso via saída USB serial para monitoramento no PC.
+
+**Fluxo Lógico do Programa**
+
+graph TD
+    A[Início do Programa] --> B[Inicialização do ADC e periféricos]
+    B --> C[Loop Principal]
+    C --> D[Leitura do ADC (tensão)]
+    D --> E[Conversão para Celsius]
+    E --> F[Exibição da temperatura via USB Serial]
+    F --> C
+
+    
+**Imagem de Funcionamento**
+
+![image](https://github.com/user-attachments/assets/e62392ff-26f4-4a71-84e0-7c5bfe07bd4f)
 
 
